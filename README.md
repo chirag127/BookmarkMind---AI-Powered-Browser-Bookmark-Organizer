@@ -1,13 +1,15 @@
 # BookmarkMind — AI Bookmark Organizer
 
-[![CI](https://img.shields.io/github/actions/workflow/status/chirag127/bookmark-mind-bs-ext/ci.yml?style=flat-square)](https://github.com/chirag127/bookmark-mind-bs-ext/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/chirag127/bookmark-mind/ci.yml?style=flat-square)](https://github.com/chirag127/bookmark-mind/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
 [![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-blue.svg?style=flat-square)](./extension/manifest.json)
-[![GitHub Stars](https://img.shields.io/github/stars/chirag127/bookmark-mind-bs-ext?style=flat-square)](https://github.com/chirag127/bookmark-mind-bs-ext)
+[![GitHub Stars](https://img.shields.io/github/stars/chirag127/bookmark-mind?style=flat-square)](https://github.com/chirag127/bookmark-mind)
 
 Auto-organize your Chrome bookmarks into intelligent, functional folders using any OpenAI-compatible LLM. Bring your own key — 13 providers built in, plus support for any custom endpoint.
 
-> [⭐ Star this repo](https://github.com/chirag127/bookmark-mind-bs-ext) if this saves you time.
+**Live:** https://bookmark-mind.oriz.in
+
+> [⭐ Star this repo](https://github.com/chirag127/bookmark-mind) if this saves you time.
 
 ## Highlights
 
@@ -16,7 +18,7 @@ Auto-organize your Chrome bookmarks into intelligent, functional folders using a
 - **Fallback ordering** — drag providers to prioritize; automatic 5-min cool-off on HTTP 429
 - **Encrypted key storage** — AES-256-GCM before writing to `chrome.storage.sync`
 - **FMHY-style folders** — categorizes by what services DO ("Tools > File Tools > Cloud Storage") not by provider ("Google > Drive")
-- **Zero telemetry** — no server, no analytics, no phone-home. Source at [chirag127/bookmark-mind-bs-ext](https://github.com/chirag127/bookmark-mind-bs-ext).
+- **Zero telemetry** — no server, no analytics, no phone-home. Source at [chirag127/bookmark-mind](https://github.com/chirag127/bookmark-mind).
 
 ## Install
 
@@ -24,12 +26,12 @@ Auto-organize your Chrome bookmarks into intelligent, functional folders using a
 
 **From source** (unpacked):
 
-1. `git clone https://github.com/chirag127/bookmark-mind-bs-ext.git`
+1. `git clone https://github.com/chirag127/bookmark-mind.git`
 2. Open Chrome → `chrome://extensions/` → toggle **Developer mode** (top-right)
 3. Click **Load unpacked** → select the `extension/` directory
 4. Icon appears in toolbar — click to open the popup
 
-Or download the latest release ZIP from [releases](https://github.com/chirag127/bookmark-mind-bs-ext/releases) and drag it onto `chrome://extensions/`.
+Or download the latest release ZIP from [releases](https://github.com/chirag127/bookmark-mind/releases) and drag it onto `chrome://extensions/`.
 
 ## Providers
 
@@ -75,8 +77,8 @@ Listing copy, permission justifications, privacy policy: [`docs/CWS-LISTING.md`]
 ## Development
 
 ```bash
-git clone https://github.com/chirag127/bookmark-mind-bs-ext.git
-cd bookmark-mind-bs-ext
+git clone https://github.com/chirag127/bookmark-mind.git
+cd bookmark-mind
 pnpm install                  # or npm install
 pnpm test                     # runs the provider registry + adapter + keyStore tests
 pnpm run check                # biome lint + format
