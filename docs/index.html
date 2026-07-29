@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BookmarkMind — AI-powered Chrome MV3 extension that auto-organizes bookmarks into intelligent folders using any OpenAI-compatible LLM. Bring your own key.">
+<title>BookmarkMind — AI Bookmark Organizer</title>
+<style>
+:root{--bg:#0d1117;--bg2:#161b22;--brd:#30363d;--fg:#f0f6fc;--mut:#8b949e;--acc:#4285f4;--acc2:#34a853}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:80px 24px}
+header{text-align:center;margin-bottom:56px}
+h1{font-size:2.6rem;font-weight:800;letter-spacing:-.02em;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tag{color:var(--mut);font-size:1.15rem;margin-top:14px}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-block;padding:12px 24px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--brd);color:var(--fg);transition:.15s}
+.btn.primary{background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;color:#fff}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:48px 0}
+.card{background:var(--bg2);border:1px solid var(--brd);border-radius:14px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:8px}
+.card p{color:var(--mut);font-size:.92rem}
+h2{margin:48px 0 18px;font-size:1.4rem}
+ol{padding-left:22px;color:var(--mut)}
+ol li{margin:8px 0}
+code{background:var(--bg2);border:1px solid var(--brd);border-radius:6px;padding:2px 7px;font-size:.88em;color:var(--fg)}
+footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--brd);text-align:center;color:var(--mut);font-size:.9rem}
+a{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>BookmarkMind</h1>
+<p class="tag">AI-powered Chrome extension that auto-organizes your bookmarks into intelligent, functional folders using any OpenAI-compatible LLM. Bring your own key.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/chirag127/bookmark-mind">View on GitHub</a>
+<a class="btn" href="https://github.com/chirag127/bookmark-mind#install">Install</a>
+</div>
+</header>
+
+<div class="grid">
+<div class="card"><h3>13 built-in providers</h3><p>Groq, Cerebras, Gemini, OpenRouter, Mistral, HuggingFace, DeepSeek, OpenAI, Novita + localhost (LM Studio, Ollama, LiteLLM, OmniRoute).</p></div>
+<div class="card"><h3>Bring your own key</h3><p>Add any OpenAI-compatible HTTPS endpoint. AES-256-GCM encrypted key storage in <code>chrome.storage.sync</code>.</p></div>
+<div class="card"><h3>FMHY-style folders</h3><p>Categorizes by what services DO — "Tools &gt; File Tools &gt; Cloud Storage" — not by vendor.</p></div>
+<div class="card"><h3>Zero telemetry</h3><p>No server, no analytics, no phone-home. Manifest V3, fully client-side.</p></div>
+</div>
+
+<h2>Install from source</h2>
+<ol>
+<li><code>git clone https://github.com/chirag127/bookmark-mind.git</code></li>
+<li>Open Chrome → <code>chrome://extensions/</code> → enable <strong>Developer mode</strong></li>
+<li>Click <strong>Load unpacked</strong> → select the <code>extension/</code> directory</li>
+<li>Click the toolbar icon to open the popup and add a provider key</li>
+</ol>
+
+<footer>
+MIT Licensed · <a href="https://github.com/chirag127/bookmark-mind">chirag127/bookmark-mind</a>
+</footer>
+</div>
+</body>
+</html>
