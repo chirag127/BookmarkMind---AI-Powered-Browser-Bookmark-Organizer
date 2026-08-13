@@ -1,15 +1,39 @@
 # BookmarkMind — AI Bookmark Organizer
 
-[![CI](https://img.shields.io/github/actions/workflow/status/chirag127/bookmark-mind/ci.yml?style=flat-square)](https://github.com/chirag127/bookmark-mind/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
+> Auto-sort your browser bookmarks into intelligent, functional folders with any OpenAI-compatible LLM — bring your own key.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/chirag127/bookmark-mind/ci.yml?style=flat-square&label=CI)](https://github.com/chirag127/bookmark-mind/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/chirag127/bookmark-mind?style=flat-square)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/chirag127/bookmark-mind?style=flat-square)](https://github.com/chirag127/bookmark-mind/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/chirag127/bookmark-mind?style=flat-square)](https://github.com/chirag127/bookmark-mind/commits/main)
 [![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-blue.svg?style=flat-square)](./extension/manifest.json)
-[![GitHub Stars](https://img.shields.io/github/stars/chirag127/bookmark-mind?style=flat-square)](https://github.com/chirag127/bookmark-mind)
 
-Auto-organize your Chrome bookmarks into intelligent, functional folders using any OpenAI-compatible LLM. Bring your own key — 13 providers built in, plus support for any custom endpoint.
+## What it is / why it exists
 
-**Live:** https://bookmark-mind.oriz.in
+Browser bookmarks rot into a giant unsorted heap. Manual foldering is tedious, and cloud "smart" organizers want you to hand your links to their servers. **BookmarkMind** is a Manifest V3 browser extension that categorizes your existing bookmarks into a clean, functional folder tree using an LLM of *your* choice — 13 OpenAI-compatible providers built in, or any custom endpoint. No server, no telemetry: your links only leave the device when you click "Categorize", and only to the provider you configured with your own key.
 
-> [⭐ Star this repo](https://github.com/chirag127/bookmark-mind) if this saves you time.
+## Links
+
+- **Live site:** [bookmark-mind.oriz.in](https://bookmark-mind.oriz.in) (Cloudflare Pages)
+- **GHP landing:** https://chirag127.github.io/bookmark-mind/
+- **Repo:** https://github.com/chirag127/bookmark-mind
+- **Chrome Web Store:** listing pending — v1.2.0 in the submission queue. Until then, [load unpacked](#install) from source.
+
+⭐ **If this is useful, please star the repo — it helps others find it.**
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[chrome.bookmarks tree] --> B[Categorizer batch pipeline]
+    B --> C[chatOrchestrator]
+    C -->|OpenAI-compat request| D{Provider fallback chain}
+    D -->|Groq / Gemini / OpenRouter / ...| E[LLM]
+    E -->|JSON: folder assignments| C
+    C --> F[folderManager applies moves]
+    F --> G[Reorganized bookmark folders]
+    F -.snapshot.-> H[snapshotManager undo]
+```
 
 ## Highlights
 
@@ -114,15 +138,47 @@ Two paths:
 1. **Built-in**: edit `extension/lib/providers/registry.js` and add a record. Then `npm run docs` to update the table everywhere. Tests in `tests/features/lib/providers/registry.test.js` auto-cover the count invariant.
 2. **User custom**: use the "**+ Custom**" flow in Options — user enters ID, name, baseUrl, auth scheme, defaultModel. Runtime validation via `validateCustomProvider()`.
 
+## Tech stack
+
+- **Vanilla JavaScript (ES modules)**, Manifest V3 — no framework, no build step for the extension itself
+- **Chrome Extensions APIs**: `bookmarks`, `storage`, `activeTab`, `tabs`, `notifications`, `alarms`
+- **Biome** for lint/format · **Jest** (jsdom) for tests · **pnpm** workspace
+- **Cloudflare Pages** for the marketing site (built by `scripts/build-site.mjs`)
+- Targets Chrome 88+, Edge 88+, Brave, Opera
+
+## Screenshots
+
+_Screenshots pending — see [`docs/cws-assets/`](./docs/cws-assets) for the current promotional captures._
+
 ## Privacy
 
 BookmarkMind has **no server** and **no telemetry**. Bookmark titles + URLs leave your device **only** when you explicitly click "Categorize" and only to the LLM provider you configured. Full policy: [`docs/PRIVACY.md`](./docs/PRIVACY.md).
+
+## Part of the oriz family
+
+BookmarkMind is one of ~80 small, single-purpose products in the **oriz** family. See the rest at [blog.oriz.in](https://blog.oriz.in).
+
+## Cost
+
+The marketing site runs **$0 on the Cloudflare free tier**. The extension is free and BYOK — your only cost is whatever your chosen LLM provider charges (most built-in providers have a permanent free tier).
+
+## Status / roadmap
+
+**Stable** (v1.2.0). In progress: Chrome Web Store listing, expanded folder-insights, per-provider model recommendations.
 
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).
 
+## Author
+
+Chirag Singhal · [chirag@oriz.in](mailto:chirag@oriz.in)
+
 ## Related
 
-- [chirag127/workflows](https://github.com/chirag127/workflows) — the reusable Dagger + GHA CI this repo uses
+- [chirag127/workflows](https://github.com/chirag127/workflows) — the reusable GHA CI this repo uses
 - [chirag127/OmniRoute](https://github.com/chirag127/OmniRoute) — the local aggregation proxy exposing 60+ free models (one of the 13 built-in providers)
+
+---
+
+_Conventional commits are the changelog — browse [the commit history](https://github.com/chirag127/bookmark-mind/commits/main) for what changed and when._
